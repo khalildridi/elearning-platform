@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+      - ./data:/code/data  # Pour stocker le fichier SQLite
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=1
+      - SECRET_KEY=your_secret_key
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+
+volumes:
+  data:
